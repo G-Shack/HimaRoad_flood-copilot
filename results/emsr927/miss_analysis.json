@@ -1,0 +1,62 @@
+{
+ "tool": "scripts/emsr927_miss_analysis.py",
+ "scope": "Reporting only; frozen roads.geojson + persisted evaluate_case_study results",
+ "trishuli-2026-v3.0-r2.AOI01.json": {
+  "roads_by_category": {
+   "unobservable": 21829,
+   "no_detected_change": 16984,
+   "observed_change": 121
+  },
+  "affected_matched_features": {
+   "missed: no_detected_change": 11,
+   "missed: no_detected_change+unobservable": 2,
+   "recalled: no_detected_change+observed_change": 2,
+   "recalled: no_detected_change+observed_change+unobservable": 2,
+   "recalled: observed_change": 2
+  }
+ },
+ "trishuli-2026-v3.0-r2.AOI02.json": {
+  "roads_by_category": {
+   "unobservable": 21829,
+   "no_detected_change": 16984,
+   "observed_change": 121
+  },
+  "affected_matched_features": {
+   "missed: no_detected_change": 1,
+   "missed: no_detected_change+unobservable": 3,
+   "missed: unobservable": 2,
+   "recalled: no_detected_change+observed_change": 4,
+   "recalled: no_detected_change+observed_change+unobservable": 2,
+   "recalled: observed_change": 1
+  }
+ },
+ "trishuli-2026-v3.0-r2-unet.AOI01.json": {
+  "roads_by_category": {
+   "unobservable": 21830,
+   "no_detected_change": 16983,
+   "observed_change": 121
+  },
+  "affected_matched_features": {
+   "missed: no_detected_change": 11,
+   "missed: no_detected_change+unobservable": 2,
+   "recalled: no_detected_change+observed_change": 2,
+   "recalled: no_detected_change+observed_change+unobservable": 2,
+   "recalled: observed_change": 2
+  }
+ },
+ "trishuli-2026-v3.0-r2-unet.AOI02.json": {
+  "roads_by_category": {
+   "unobservable": 21830,
+   "no_detected_change": 16983,
+   "observed_change": 121
+  },
+  "affected_matched_features": {
+   "missed: no_detected_change": 1,
+   "missed: no_detected_change+unobservable": 3,
+   "missed: unobservable": 2,
+   "recalled: no_detected_change+observed_change": 4,
+   "recalled: no_detected_change+observed_change+unobservable": 2,
+   "recalled: observed_change": 1
+  }
+ }
+}

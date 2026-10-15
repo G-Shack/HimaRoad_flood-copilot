@@ -1,0 +1,5 @@
+event_date: '2026-08-26'
+bbox: [85.25, 27.65, 85.45, 27.85]
+provider: gee
+detector: baseline
+# An example request, not evidence that this date is an EMS activation.

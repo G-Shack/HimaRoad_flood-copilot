@@ -1,0 +1,47 @@
+resolution_m: 20
+pre_days: 45
+post_days: 20
+max_area_km2: 600
+network_buffer_m: 5000
+snap_tolerance_m: 200
+road_segment_length_m: 100
+min_segment_length_m: 0.01
+# hazard-v2 (P04): layover/shadow masks and the other P04 layers; hazard-v1 reproduces P03.
+hazard_version: hazard-v2
+# hazard-v2 settings (justification: docs/HAZARD_SCIENCE.md); recorded in report.hazard.settings.
+hazard_v2:
+  permanent_water_fraction: 0.5
+  z_min: 3.0
+  z_sd_floor_db: 1.0
+  min_pre_for_z: 3
+  corridor_hand_m: 30.0
+  mmu_m2: 1600.0
+thresholds:
+  post_db: -16
+  decrease_db: 3
+  permanent_water_db: -20
+  max_slope_deg: 12
+  max_hand_m: 20
+  disturbance_db: 5
+  neighborhood_size: 3
+  mndwi_post: 0
+  mndwi_increase: 0.2
+  ndvi_decrease: 0.25
+  ndbi_increase: 0.2
+osm_crosscheck: false  # Overpass attic cross-check (public server; light use only)
+# CDSE provider (Phase 02); values are the provider's defaults made explicit.
+min_scene_coverage: 0.5
+max_pre_scenes: 5
+optical_post_days: 45
+optical_candidates: 3
+min_optical_clear_fraction: 0.3
+optical_search_cache_settle_days: 3  # S2 STAC search cached only for windows ending >= this many days ago
+sentinel_hub_pu_budget: 500
+# Settlements (Phase 03): place nodes plus building clusters (A-D20).
+cluster_eps_m: 50.0
+cluster_min_buildings: 10
+cluster_name_radius_m: 500.0
+building_assignment_max_m: 500.0
+# Flow path (bonus): optional [{name, lon, lat}] sources traced on the run DEM.
+flowpath_sources: []
+flowpath_corridor_m: 500.0

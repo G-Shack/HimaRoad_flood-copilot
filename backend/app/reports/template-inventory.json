@@ -1,0 +1,1327 @@
+{
+  "schema_version": "template-inventory-1.0",
+  "reviewer": "Siku",
+  "review_date": "2026-10-15",
+  "sources": {
+    "backend/app/copilot/offline.py": "24262657a453a2af868b9176bbf00b2ca553b56b0bd39eb5c73a40b88d813e58",
+    "backend/app/copilot/refusals.py": "51fc95ddb9b00cb881355439bb3f2dffd3f562430f4646ecde7ffa9ac92e811b",
+    "backend/app/copilot/rendering.py": "c6663c803074b66069673718dff985f902bad1aab2bd8c8e0e8311f967a56b78",
+    "backend/app/reports/templates.py": "5a7c2cf1c3375e4d8d38024310ce4de5ace217e1c7a5d2fa4d5ed028e2e582e9",
+    "backend/app/reports/rendering.py": "96a5230887f488733a4e1a7bc445437a856aacde6c723e0e5e3b1c5b8969a812",
+    "backend/app/reports/formatting.py": "cf0fc491cfde1059af3b516cb3db2f58d3229becd36b69988e1c3eec98d4f450"
+  },
+  "templates": [
+    {
+      "id": "T001",
+      "source": "backend/app/copilot/offline.py",
+      "line": 15,
+      "en": "Summarise this run.",
+      "ne": "यो रनको सारांश दिनुहोस्।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T002",
+      "source": "backend/app/copilot/offline.py",
+      "line": 16,
+      "en": "Which roads are potentially affected?",
+      "ne": "कुन सडकहरू सम्भावित रूपमा प्रभावित छन्?",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T003",
+      "source": "backend/app/copilot/offline.py",
+      "line": 17,
+      "en": "Which buildings are potentially exposed?",
+      "ne": "कुन भवनहरू सम्भावित रूपमा जोखिममा छन्?",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T004",
+      "source": "backend/app/copilot/offline.py",
+      "line": 21,
+      "en": "Which settlements are modelled as disconnected?",
+      "ne": "कुन बस्तीहरूको सम्पर्क टुटेको हुन सक्ने मोडेलले देखाउँछ?",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T005",
+      "source": "backend/app/copilot/offline.py",
+      "line": 25,
+      "en": "Show sources and limitations.",
+      "ne": "स्रोत र सीमाहरू देखाउनुहोस्।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T006",
+      "source": "backend/app/copilot/offline.py",
+      "line": 26,
+      "en": "Show hypothetical repair priorities.",
+      "ne": "काल्पनिक मर्मत प्राथमिकताहरू देखाउनुहोस्।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T007",
+      "source": "backend/app/copilot/offline.py",
+      "line": 27,
+      "en": "Is downstream flow-path evidence available?",
+      "ne": "बहाव मार्गको प्रमाण उपलब्ध छ?",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T008",
+      "source": "backend/app/copilot/offline.py",
+      "line": 28,
+      "en": "Show evidence integrity checks.",
+      "ne": "प्रमाण अखण्डताको जाँच देखाउनुहोस्।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T009",
+      "source": "backend/app/copilot/offline.py",
+      "key": "llm_unavailable_notice",
+      "en": "LLM unavailable. Predefined evidence questions remain available.",
+      "ne": "भाषा मोडेल उपलब्ध छैन। पूर्वनिर्धारित प्रमाणसम्बन्धी प्रश्नहरू उपलब्ध छन्।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T010",
+      "source": "backend/app/copilot/refusals.py",
+      "line": 28,
+      "en": "casualties",
+      "ne": "\\b(?:death\\w*|dead|died|die|killed|fatal\\w*|casualt\\w*|perish\\w*|missing|unaccounted|injur\\w*|surviv\\w*|alive|people|persons|population)\\b|मृत|मरे|मृत्यु|ज्यान|हताहत|बेपत्ता|हराएका|घाइते|मानिस|व्यक्ति|जनसंख्या|बाँचेक",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T011",
+      "source": "backend/app/copilot/refusals.py",
+      "line": 34,
+      "en": "depth",
+      "ne": "\\b(?:depth|deep|water\\s+level|how\\s+high)\\b|गहिर|जलस्तर|पानीको\\s*उचाइ|पानी.*कति.*मिटर",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T012",
+      "source": "backend/app/copilot/refusals.py",
+      "line": 39,
+      "en": "confirmed_condition",
+      "ne": "\\b(?:collaps\\w*|destroy\\w*|demolish\\w*|closed|open)\\b|पक्का.*(?:क्षति|भत्क|बन्द)|भत्क|ध्वस्त|बन्द\\s*(?:छ|भए)|खुला\\s*छ",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T013",
+      "source": "backend/app/copilot/refusals.py",
+      "line": 44,
+      "en": "safe_route",
+      "ne": "\\b(?:saf\\w*|passable|risk.free|without\\s+risk|usable)\\b|सुरक्षित|सुरक्षा|जोखिमरहित|(?:जान|हिँड्न|चल्न)\\s*मिल्छ",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T014",
+      "source": "backend/app/copilot/refusals.py",
+      "line": 49,
+      "en": "cause",
+      "ne": "\\b(?:cause\\w*|glof|trigger\\w*)\\b|why.*(?:happen|occur)|how.*(?:flood|event).*(?:start|begin)|glacial\\s+lake|कारण|हिमताल|किन.*(?:आयो|आएको|बाढी)|कसरी.*सुरु",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T015",
+      "source": "backend/app/copilot/refusals.py",
+      "line": 54,
+      "en": "forecast",
+      "ne": "\\b(?:forecast\\w*|predict\\w*|tomorrow|future)\\b|next\\s+(?:day|week|month)|will.*(?:flood|water|rain|rise|recede|reach)|कहिले.*घट|भोलि|भविष्य|पूर्वानुमान|अर्को\\s*हप्ता",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T016",
+      "source": "backend/app/copilot/refusals.py",
+      "line": 59,
+      "en": "out_of_run",
+      "ne": "\\b(?:elsewhere|outside|another\\s+(?:run|area|country)|other\\s+country)\\b|बाहिर|अर्को\\s*(?:रन|क्षेत्र|देश)|अन्य\\s*देश",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T017",
+      "source": "backend/app/copilot/refusals.py",
+      "line": 78,
+      "en": "Satellite-map evidence cannot establish casualty or population figures.",
+      "ne": "उपग्रह नक्साको प्रमाणबाट हताहत वा जनसंख्याको संख्या निर्धारण गर्न सकिँदैन।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T018",
+      "source": "backend/app/copilot/refusals.py",
+      "line": 82,
+      "en": "These observations do not establish water depth or water level.",
+      "ne": "यी अवलोकनले पानीको गहिराइ वा जलस्तर निर्धारण गर्दैनन्।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T019",
+      "source": "backend/app/copilot/refusals.py",
+      "line": 86,
+      "en": "These maps cannot confirm damage, collapse, or operational road condition.",
+      "ne": "यी नक्साले क्षति, संरचना भत्किएको वा सडकको सञ्चालन अवस्था पुष्टि गर्न सक्दैनन्।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T020",
+      "source": "backend/app/copilot/refusals.py",
+      "line": 90,
+      "en": "Mapped reachability does not establish safe or usable travel.",
+      "ne": "नक्सामा देखिएको पहुँचले यात्रा सुरक्षित वा प्रयोगयोग्य छ भन्ने पुष्टि गर्दैन।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T021",
+      "source": "backend/app/copilot/refusals.py",
+      "line": 94,
+      "en": "The selected run does not establish the event's cause.",
+      "ne": "छानिएको रनले घटनाको कारण निर्धारण गर्दैन।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T022",
+      "source": "backend/app/copilot/refusals.py",
+      "line": 98,
+      "en": "These observations are not a forecast of future flooding or travel conditions.",
+      "ne": "यी अवलोकन भविष्यको बाढी वा यात्राको अवस्थाको पूर्वानुमान होइनन्।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T023",
+      "source": "backend/app/copilot/refusals.py",
+      "line": 102,
+      "en": "This request is outside the authorised run or selected mapped asset.",
+      "ne": "यो अनुरोध अनुमति दिइएको रन वा छानिएको नक्साङ्कित सम्पत्तिभन्दा बाहिर छ।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T024",
+      "source": "backend/app/copilot/refusals.py",
+      "line": 106,
+      "en": "This request cannot be answered by the supported evidence queries. Choose a predefined question.",
+      "ne": "यो अनुरोधलाई उपलब्ध प्रमाणसम्बन्धी प्रश्नहरूले उत्तर दिन सक्दैनन्। पूर्वनिर्धारित प्रश्न छान्नुहोस्।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T025",
+      "source": "backend/app/copilot/refusals.py",
+      "line": 111,
+      "en": "The evidence snapshot could not be verified. No impact facts are returned.",
+      "ne": "प्रमाणको स्न्यापशट प्रमाणित हुन सकेन। प्रभावसम्बन्धी तथ्य दिइएको छैन।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T026",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 205,
+      "en": "Modelled disconnections with corroborated evidence",
+      "ne": "थप प्रमाण भएका मोडेलका सम्पर्क विच्छेद",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T027",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 209,
+      "en": "Mapped connections depending on unknown links",
+      "ne": "अज्ञात खण्डमा निर्भर नक्साको सम्पर्क",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T028",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 213,
+      "en": "Mapped settlements",
+      "ne": "नक्सामा रहेका बस्तीहरू",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T029",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 214,
+      "en": "Settlements represented by building clusters",
+      "ne": "भवन समूहले प्रतिनिधित्व गरेका बस्तीहरू",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T030",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 218,
+      "en": "Path length (m)",
+      "ne": "मार्ग लम्बाइ (मि.)",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T031",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 219,
+      "en": "Corridor radius (m)",
+      "ne": "मार्ग क्षेत्र त्रिज्या (मि.)",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T032",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 220,
+      "en": "DEM cells",
+      "ne": "DEM कोषहरू",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T033",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 221,
+      "en": "Modelled disconnected settlements",
+      "ne": "मोडेलमा सम्पर्क टुटेका बस्तीहरू",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T034",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 222,
+      "en": "Settlements with uncertain access",
+      "ne": "पहुँच अनिश्चित भएका बस्तीहरू",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T035",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 223,
+      "en": "Possible mapped trail access",
+      "ne": "नक्सामा सम्भावित गोरेटो पहुँच",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T036",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 224,
+      "en": "Potential primary-care disconnections",
+      "ne": "स्वास्थ्य केन्द्रसँग सम्भावित सम्पर्क विच्छेद",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T037",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 228,
+      "en": "Potentially exposed buildings",
+      "ne": "सम्भावित जोखिममा रहेका भवनहरू",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T038",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 232,
+      "en": "Potentially affected links",
+      "ne": "सम्भावित प्रभावित सडक खण्डहरू",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T039",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 233,
+      "en": "Post-observation coverage (%)",
+      "ne": "पछिल्लो अवलोकनको समेटिएको भाग (%)",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T040",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 237,
+      "en": "Change-observation coverage (%)",
+      "ne": "परिवर्तन अवलोकनको समेटिएको भाग (%)",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T041",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 241,
+      "en": "Possible water area",
+      "ne": "सम्भावित पानीको क्षेत्रफल",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T042",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 242,
+      "en": "Possible disturbance area",
+      "ne": "सम्भावित परिवर्तनको क्षेत्रफल",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T043",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 243,
+      "en": "possible debris (unvalidated)",
+      "ne": "सम्भावित गेग्रान (प्रमाणित नभएको)",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T044",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 244,
+      "en": "Optical possible water area",
+      "ne": "अप्टिकल सम्भावित पानी क्षेत्रफल",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T045",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 245,
+      "en": "Optical possible disturbance area",
+      "ne": "अप्टिकल सम्भावित परिवर्तन क्षेत्रफल",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T046",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 246,
+      "en": "Unobservable area",
+      "ne": "अवलोकन गर्न नसकिने क्षेत्रफल",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T047",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 247,
+      "en": "Area (m²)",
+      "ne": "क्षेत्रफल (m²)",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T048",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 248,
+      "en": "Observed coverage (m²)",
+      "ne": "अवलोकनले समेटेको क्षेत्रफल (m²)",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T049",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 249,
+      "en": "Water-only inclusion",
+      "ne": "पानी मात्र समावेश गर्दा",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T050",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 250,
+      "en": "Water or disturbance inclusion",
+      "ne": "पानी वा परिवर्तन समावेश गर्दा",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T051",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 251,
+      "en": "Unobservable mapped features",
+      "ne": "अवलोकन गर्न नसकिने नक्साका वस्तुहरू",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T052",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 252,
+      "en": "Partially observed features",
+      "ne": "आंशिक अवलोकन भएका वस्तुहरू",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T053",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 253,
+      "en": "Mapped features",
+      "ne": "नक्साका वस्तुहरू",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T054",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 254,
+      "en": "Observed-change links",
+      "ne": "परिवर्तन अवलोकन भएका सडक खण्डहरू",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T055",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 255,
+      "en": "Corroborated links",
+      "ne": "थप प्रमाण भएका सडक खण्डहरू",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T056",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 319,
+      "en": "unknown identifier",
+      "ne": "पहिचान अज्ञात",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T057",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 492,
+      "en": "Detailed presentation unavailable; inspect the cited evidence record.",
+      "ne": "विस्तृत प्रस्तुति उपलब्ध छैन; उद्धृत प्रमाण अभिलेख हेर्नुहोस्।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T058",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 640,
+      "en": "Selected evidence records follow.",
+      "ne": "छानिएका प्रमाण अभिलेख तल छन्।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T059",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 663,
+      "en": "Limitation details withheld because evidence integrity failed; inspect the citation.",
+      "ne": "प्रमाण अखण्डता जाँच असफल भएकाले सीमाको विवरण रोकिएको छ; उद्धरण हेर्नुहोस्।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T060",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 23,
+      "en": "Evidence follows.",
+      "ne": "प्रमाण तल दिइएको छ।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T061",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 303,
+      "en": "unknown",
+      "ne": "अज्ञात",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T062",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 324,
+      "en": "unknown",
+      "ne": "अज्ञात",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T063",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 328,
+      "en": "mapped connection",
+      "ne": "नक्सामा सम्पर्क",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T064",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 330,
+      "en": "no mapped connection",
+      "ne": "नक्सामा सम्पर्क छैन",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T065",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 338,
+      "en": "Radar pre acquisition",
+      "ne": "घटनाअघिको राडार अवलोकन",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T066",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 339,
+      "en": "Radar post acquisition",
+      "ne": "घटनापछिको राडार अवलोकन",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T067",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 340,
+      "en": "Optical pre acquisition",
+      "ne": "घटनाअघिको अप्टिकल अवलोकन",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T068",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 341,
+      "en": "Optical post acquisition",
+      "ne": "घटनापछिको अप्टिकल अवलोकन",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T069",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 417,
+      "en": "Mapped route found",
+      "ne": "नक्सामा मार्ग भेटियो",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T070",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 418,
+      "en": "No route found in the modelled network",
+      "ne": "मोडेलको नक्साको सञ्जालमा मार्ग भेटिएन",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T071",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 419,
+      "en": "Mapped route cannot be assessed",
+      "ne": "नक्साको मार्गको मूल्याङ्कन गर्न सकिँदैन",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T072",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 425,
+      "en": "no recorded removals",
+      "ne": "अभिलेखित हटाइएका खण्ड छैनन्",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T073",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 438,
+      "en": "; mapped reachability does not establish travel conditions.",
+      "ne": "; नक्साको पहुँचले यात्राको अवस्था पुष्टि गर्दैन।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T074",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 449,
+      "en": "Single-link reopening gains unavailable; this does not mean no repair benefit.",
+      "ne": "एक खण्ड खोल्दाको लाभ उपलब्ध छैन; यसले मर्मतको लाभ नभएको पुष्टि गर्दैन।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T075",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 478,
+      "en": " Joint repairs may help even when individual gains are zero. Buildings use nearest-settlement assignment; affiliation is unknown. Not a verified repair or travel recommendation.",
+      "ne": " एकल लाभ शून्य भए पनि संयुक्त मर्मतले मद्दत गर्न सक्छ। भवन नजिकको बस्तीसँग जोडिन्छन्; वास्तविक सम्बन्ध अज्ञात छ। यो पुष्टि भएको मर्मत वा यात्राको सिफारिस होइन।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T076",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 642,
+      "en": "Requested evidence unavailable; this does not mean zero impact.",
+      "ne": "मागिएको प्रमाण उपलब्ध छैन; यसको अर्थ प्रभाव शून्य होइन।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T077",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 658,
+      "en": "Evidence integrity failed; impact observations and counts are withheld.",
+      "ne": "प्रमाण अखण्डता जाँच असफल भयो; प्रभावका अवलोकन र सङ्ख्या रोकिएका छन्।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T078",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 346,
+      "en": "unknown",
+      "ne": "अज्ञात",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T079",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 354,
+      "en": "; satellite time, not event time.",
+      "ne": "; उपग्रहको समय, घटनाको समय होइन।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T080",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 377,
+      "en": "unknown",
+      "ne": "अज्ञात",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T081",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 382,
+      "en": "Recorded OSM snapshot",
+      "ne": "अभिलेखित OSM स्न्यापसट",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T082",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 383,
+      "en": "Recorded latest OSM edit",
+      "ne": "अभिलेखित अन्तिम OSM सम्पादन",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T083",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 384,
+      "en": "Recorded OSM cutoff",
+      "ne": "अभिलेखित OSM समय सीमा",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T084",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 388,
+      "en": "Recorded provider: ",
+      "ne": "अभिलेखित प्रदायक: ",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T085",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 391,
+      "en": "Post acquisition offset (hours)",
+      "ne": "पछिल्लो अवलोकनको समय अन्तर (घण्टा)",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T086",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 395,
+      "en": "Latest pre acquisition offset (hours)",
+      "ne": "अघिल्लो अन्तिम अवलोकनको समय अन्तर (घण्टा)",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T087",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 471,
+      "en": "No ranked single-link candidates.",
+      "ne": "क्रमबद्ध एकल खण्डका उम्मेदवार छैनन्।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T088",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 474,
+      "en": "Hypothetical single-link reopening gains: ",
+      "ne": "काल्पनिक एकल खण्ड खोल्दाको लाभ: ",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T089",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 618,
+      "en": "Roads",
+      "ne": "सडकहरू",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T090",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 619,
+      "en": "Buildings",
+      "ne": "भवनहरू",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T091",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 620,
+      "en": "Settlements",
+      "ne": "बस्तीहरू",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T092",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 648,
+      "en": "No matching records in this query; this does not establish absence of impact.",
+      "ne": "यो प्रश्नमा मिल्ने अभिलेख छैनन्; यसले प्रभाव नभएको पुष्टि गर्दैन।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T093",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 368,
+      "en": "Recorded input source: ",
+      "ne": "अभिलेखित आगत स्रोत: ",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T094",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 372,
+      "en": " recorded identifier: ",
+      "ne": " अभिलेखित पहिचान: ",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T095",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 405,
+      "en": "; measured from the supplied event-date boundary, not event time.",
+      "ne": "; दिइएको घटना मितिको सीमाबाट गणना, घटनाको समयबाट होइन।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T096",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 436,
+      "en": "; scenario-removed link IDs: ",
+      "ne": "; परिदृश्यले हटाएका खण्डका पहिचान: ",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T097",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 461,
+      "en": "; potentially exposed buildings assigned to those settlements: ",
+      "ne": "; ती बस्तीमा जोडिएका सम्भावित जोखिमका भवन: ",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T098",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 500,
+      "en": "Mapped feature ID: ",
+      "ne": "नक्साको वस्तुको पहिचान: ",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T099",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 628,
+      "en": "Hypothetical scenario: ",
+      "ne": "काल्पनिक परिदृश्य: ",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T100",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 631,
+      "en": "Evidence status: ",
+      "ne": "प्रमाणको अवस्था: ",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T101",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 434,
+      "en": "; network cost (m): ",
+      "ne": "; सञ्जाल लागत (मि.): ",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T102",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 459,
+      "en": "; reconnected mapped settlements: ",
+      "ne": "; पुनः जोडिएका नक्साका बस्ती: ",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T103",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 695,
+      "en": "Evidence follows.",
+      "ne": "प्रमाण तल दिइएको छ।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T104",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 457,
+      "en": "Link ID: ",
+      "ne": "खण्डको पहिचान: ",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T105",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 432,
+      "en": "; mapped target: ",
+      "ne": "; नक्साको गन्तव्य: ",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T106",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 507,
+      "en": "Mapped primary-care reachability, not service availability; settlement ID: ",
+      "ne": "नक्सामा स्वास्थ्य केन्द्रको पहुँच; सेवाको उपलब्धता होइन; बस्तीको पहिचान: ",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T107",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 141,
+      "en": "Evidence follows.",
+      "ne": "प्रमाण तल दिइएको छ।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T108",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 540,
+      "en": "Inclusion sensitivity, not a confidence interval. ",
+      "ne": "समावेशको संवेदनशीलता; विश्वास अन्तराल होइन। ",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T109",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 430,
+      "en": "; selected settlement: ",
+      "ne": "; छानिएको बस्ती: ",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T110",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 560,
+      "en": "Additional source limitation recorded; inspect the citation.",
+      "ne": "स्रोतको थप सीमा अभिलेखित छ; उद्धरण हेर्नुहोस्।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T111",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 516,
+      "en": "baseline",
+      "ne": "आधार अवस्था",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T112",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 572,
+      "en": "Supplied event date: ",
+      "ne": "दिइएको घटना मिति: ",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T113",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 428,
+      "en": "; recorded mode: ",
+      "ne": "; अभिलेखित माध्यम: ",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T114",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 518,
+      "en": "scenario ",
+      "ne": "परिदृश्य ",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T115",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 577,
+      "en": "Satellite acquisition time, not event time: ",
+      "ne": "उपग्रह अवलोकनको समय, घटनाको समय होइन: ",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T116",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 586,
+      "en": "Evidence integrity (not mapping accuracy): ",
+      "ne": "प्रमाण अखण्डता (नक्साको शुद्धता होइन): ",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T117",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 594,
+      "en": "Run processing status: ",
+      "ne": "रन प्रशोधनको अवस्था: ",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T118",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 596,
+      "en": "DEM-derived flow path; not an inundation forecast. ",
+      "ne": "DEMबाट बहाव मार्ग; डुबान पूर्वानुमान होइन। ",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T119",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 601,
+      "en": "Recorded ID: ",
+      "ne": "अभिलेखित पहिचान: ",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T120",
+      "source": "backend/app/copilot/rendering.py",
+      "line": 607,
+      "en": "Flow path unavailable in this HimaRoad run.",
+      "ne": "यो HimaRoad रनमा बहाव मार्ग उपलब्ध छैन।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T121",
+      "source": "backend/app/copilot/rendering.py",
+      "key": "acquisition_boundary",
+      "en": "Satellite acquisition times differ from event time; offsets use the supplied event-date boundary.",
+      "ne": "उपग्रह अवलोकनको समय घटनाको समय होइन; अन्तर दिइएको घटना मितिको सीमाबाट गणना हुन्छ।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T123",
+      "source": "backend/app/copilot/rendering.py",
+      "key": "flow_not_forecast",
+      "en": "DEM flow paths are terrain traces, not inundation forecasts or travel recommendations.",
+      "ne": "DEM बहाव मार्ग भूभागको रेखाङ्कन हो; डुबान पूर्वानुमान वा यात्राको सिफारिस होइन।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T124",
+      "source": "backend/app/copilot/rendering.py",
+      "key": "hazard3_observability",
+      "en": "Recorded layover/shadow masks are approximate; unobservable areas remain unknown. Fused unions span several satellite dates; feature times are earliest flagging observations.",
+      "ne": "अभिलेखित layover/shadow मास्क अनुमानित हुन्; अवलोकन नभएका क्षेत्र अज्ञात रहन्छन्। धेरै उपग्रह मितिका तह जोडिएका छन्; वस्तुको समय परिवर्तन देखाउने पहिलो अवलोकन हो।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T125",
+      "source": "backend/app/copilot/rendering.py",
+      "key": "hazard3_optical",
+      "en": "Optical-only change belongs to the worst-case scenario; long-gap signals are suppressed. The recorded NDBI threshold is unused; optical support does not validate possible debris.",
+      "ne": "अप्टिकल प्रमाण मात्र अत्यन्त प्रतिकूल परिदृश्यमा पर्छ र लामो अन्तरका सङ्केत दबाइन्छन्। अभिलेखित NDBI सीमा प्रयोग हुँदैन; अप्टिकल समर्थनले सम्भावित गेग्रान प्रमाणित गर्दैन।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T126",
+      "source": "backend/app/copilot/rendering.py",
+      "key": "hypothetical",
+      "en": "Scenario closures and disconnections are hypothetical, not confirmed conditions.",
+      "ne": "परिदृश्यका अवरोध र सम्पर्क विच्छेद काल्पनिक हुन्; पुष्टि भएका अवस्था होइनन्।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T127",
+      "source": "backend/app/copilot/rendering.py",
+      "key": "incomplete",
+      "en": "Run is incomplete; impact observations and counts are unavailable.",
+      "ne": "रन अपूर्ण छ; प्रभावका अवलोकन र सङ्ख्या उपलब्ध छैनन्।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T128",
+      "source": "backend/app/copilot/rendering.py",
+      "key": "mapped_network",
+      "en": "Mapped settlements, roads and destinations may be incomplete; unmapped assets are excluded.",
+      "ne": "नक्साका बस्ती, सडक र गन्तव्य अपूर्ण हुन सक्छन्; नक्साबाहिरका वस्तुहरू समावेश छैनन्।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T129",
+      "source": "backend/app/copilot/rendering.py",
+      "key": "model_evaluation",
+      "en": "Recorded segmentation-model identity and operating point do not establish independent accuracy or confirmed impacts.",
+      "ne": "अभिलेखित मोडेलको पहिचान र सञ्चालन बिन्दुले स्वतन्त्र शुद्धता वा प्रभाव पुष्टि गर्दैनन्।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T130",
+      "source": "backend/app/copilot/rendering.py",
+      "key": "nonallowed_source",
+      "en": "Recorded source requires challenge compliance review; this run is not approved as compliant.",
+      "ne": "अभिलेखित स्रोतको नियमअनुसार समीक्षा आवश्यक छ; यो रन नियमअनुकूल भनेर स्वीकृत छैन।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T131",
+      "source": "backend/app/copilot/rendering.py",
+      "key": "optical_absent",
+      "en": "No optical post-event acquisition is recorded; optical corroboration is unavailable.",
+      "ne": "घटनापछिको अप्टिकल अवलोकन अभिलेखित छैन; अप्टिकल पुष्टिकरण उपलब्ध छैन।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T132",
+      "source": "backend/app/copilot/rendering.py",
+      "key": "producer_unknown",
+      "en": "Producer commit is unknown; adapter pin does not identify the producer.",
+      "ne": "उत्पादक कमिट अज्ञात छ; एडेप्टर पिन उत्पादकको पहिचान होइन।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T133",
+      "source": "backend/app/copilot/rendering.py",
+      "key": "resolution",
+      "en": "Detection, exposure and snapping depend on recorded spatial resolution and thresholds.",
+      "ne": "पत्ता लगाउने, जोखिम र सडकसँग जोड्ने नतिजा अभिलेखित रिजोल्युसन र सीमामा निर्भर छन्।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T134",
+      "source": "backend/app/copilot/rendering.py",
+      "key": "synthetic",
+      "en": "Synthetic demonstration; not real-event evidence.",
+      "ne": "कृत्रिम प्रदर्शन; वास्तविक घटनाको प्रमाण होइन।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T135",
+      "source": "backend/app/copilot/rendering.py",
+      "key": "synthetic_components",
+      "en": "One or more processing components are labelled synthetic. Results are demonstrations, not real-event impact evidence.",
+      "ne": "प्रशोधनका केही भाग कृत्रिम भनेर चिनाइएका छन्। नतिजा प्रदर्शनका लागि हुन्; वास्तविक घटनाको प्रभावको प्रमाण होइनन्।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T136",
+      "source": "backend/app/copilot/rendering.py",
+      "key": "terrain_observability",
+      "en": "The reviewed contract does not establish layover or radar shadow coverage.",
+      "ne": "समीक्षा गरिएको करारले राडार छाया वा लेओभरको समेटिएको क्षेत्र स्थापित गर्दैन।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T137",
+      "source": "backend/app/copilot/rendering.py",
+      "key": "unet_himalayan_candidate",
+      "en": "UNet water is an unvalidated candidate in Himalayan valleys. Recorded model identity and development calibration do not demonstrate transfer.",
+      "ne": "हिमाली उपत्यकामा UNetको पानी प्रमाणित नभएको सम्भावित सङ्केत हो। अभिलेखित मोडेल पहिचान र विकास चरणको क्यालिब्रेसनले अन्य भूभागमा क्षमता पुष्टि गर्दैन।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T138",
+      "source": "backend/app/copilot/rendering.py",
+      "key": "zero_scenario2_without_corroboration",
+      "en": "Scenario 2 has zero modelled cut-offs and no radar/optical corroborated links; observed-change links remain. This does not establish absence of affected settlements.",
+      "ne": "परिदृश्य 2 मा मोडेलले सम्पर्क विच्छेद शून्य देखाउँछ र राडार/अप्टिकल पुष्टिकरण भएका खण्ड छैनन्; परिवर्तन देखिएका खण्ड बाँकी छन्। यसले प्रभावित बस्ती नभएको पुष्टि गर्दैन।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T139",
+      "source": "backend/app/reports/templates.py",
+      "line": 4,
+      "en": "Situation report",
+      "ne": "अवस्था प्रतिवेदन",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T140",
+      "source": "backend/app/reports/templates.py",
+      "line": 5,
+      "en": "Area / event / processing",
+      "ne": "क्षेत्र / घटना / प्रशोधन",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T141",
+      "source": "backend/app/reports/templates.py",
+      "line": 6,
+      "en": "Satellite acquisitions and offsets",
+      "ne": "उपग्रह अवलोकन र समय अन्तर",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T142",
+      "source": "backend/app/reports/templates.py",
+      "line": 7,
+      "en": "Recorded method and thresholds",
+      "ne": "अभिलेखित विधि र सीमाहरू",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T143",
+      "source": "backend/app/reports/templates.py",
+      "line": 8,
+      "en": "Coverage and inclusion sensitivity",
+      "ne": "अवलोकनको पहुँच र समावेशको संवेदनशीलता",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T144",
+      "source": "backend/app/reports/templates.py",
+      "line": 9,
+      "en": "Observed hazard areas",
+      "ne": "अवलोकन भएका जोखिम क्षेत्र",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T145",
+      "source": "backend/app/reports/templates.py",
+      "line": 10,
+      "en": "Potentially affected mapped assets",
+      "ne": "सम्भावित प्रभावित नक्साङ्कित सम्पत्ति",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T146",
+      "source": "backend/app/reports/templates.py",
+      "line": 11,
+      "en": "Hypothetical access scenarios",
+      "ne": "काल्पनिक पहुँच परिदृश्य",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T147",
+      "source": "backend/app/reports/templates.py",
+      "line": 12,
+      "en": "Limitations",
+      "ne": "सीमाहरू",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T148",
+      "source": "backend/app/reports/templates.py",
+      "line": 13,
+      "en": "Unavailable / unknown; not zero.",
+      "ne": "उपलब्ध छैन / अज्ञात; शून्य होइन।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T149",
+      "source": "backend/app/reports/templates.py",
+      "line": 14,
+      "en": "Complete evidence and source limitations: report-facts.json / report-claims.csv. Bracketed references resolve to full claim IDs in the export.",
+      "ne": "पूर्ण प्रमाण र स्रोतका सीमाहरू: report-facts.json / report-claims.csv। कोष्ठकका उद्धरणले निर्यातमा पूरा प्रमाण पहिचान जनाउँछन्।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T150",
+      "source": "backend/app/reports/templates.py",
+      "line": 21,
+      "en": "Run layers only; no travel-condition assessment.",
+      "ne": "रनका तह मात्र; यात्राको अवस्था मूल्याङ्कन गरिएको छैन।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T151",
+      "source": "backend/app/reports/templates.py",
+      "line": 25,
+      "en": "Blue: possible water; ochre: disturbance; grey: unobservable; dark lines: roads; green points: settlements. Map source claims: map-claims.json.",
+      "ne": "नीलो: सम्भावित पानी; पहेँलो: परिवर्तन; खरानी: अवलोकन गर्न नसकिने; गाढा रेखा: सडक; हरियो बिन्दु: बस्ती। नक्साको प्रमाण: map-claims.json।",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T152",
+      "source": "backend/app/reports/templates.py",
+      "line": 31,
+      "en": "SYNTHETIC DEMONSTRATION",
+      "ne": "कृत्रिम प्रदर्शन",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T153",
+      "source": "backend/app/reports/templates.py",
+      "line": 32,
+      "en": "Satellite times are not event times. Unknown observations never imply zero impact.",
+      "ne": "उपग्रहको समय घटनाको समय होइन। अज्ञात अवलोकनको अर्थ प्रभाव शून्य होइन।",
+      "review": "changed after review: pending native review"
+    },
+    {
+      "id": "T154",
+      "source": "backend/app/reports/templates.py",
+      "line": 39,
+      "en": "Original mapped name (Nepali name unavailable)",
+      "ne": "मूल नक्साको नाम (नेपाली नाम उपलब्ध छैन)",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T155",
+      "source": "backend/app/reports/rendering.py",
+      "line": 52,
+      "en": "Recorded asserted closures only",
+      "ne": "अभिलेखित बन्द भनिएका खण्ड मात्र",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T156",
+      "source": "backend/app/reports/rendering.py",
+      "line": 53,
+      "en": "Adds corroborated impact links",
+      "ne": "थप प्रमाण भएका प्रभावित खण्ड समावेश",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T157",
+      "source": "backend/app/reports/rendering.py",
+      "line": 54,
+      "en": "Adds observed, possible and unknown links",
+      "ne": "अवलोकन, सम्भावित र अज्ञात खण्ड समावेश",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T158",
+      "source": "backend/app/reports/rendering.py",
+      "line": 58,
+      "en": "Recorded asserted closures only",
+      "ne": "अभिलेखित बन्द भनिएका खण्ड मात्र",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T159",
+      "source": "backend/app/reports/rendering.py",
+      "line": 59,
+      "en": "Adds SAR observed-change and corroborated links (primary)",
+      "ne": "SAR अवलोकित परिवर्तन र थप प्रमाण भएका खण्ड (प्रमुख)",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T160",
+      "source": "backend/app/reports/rendering.py",
+      "line": 63,
+      "en": "Adds corroborated links; subset of scenario2",
+      "ne": "थप प्रमाण भएका खण्ड; परिदृश्य२को उपसमूह",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T161",
+      "source": "backend/app/reports/rendering.py",
+      "line": 67,
+      "en": "Adds possible and unknown links (worst case)",
+      "ne": "सम्भावित र अज्ञात खण्ड (अत्यन्त प्रतिकूल अवस्था)",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T162",
+      "source": "backend/app/reports/rendering.py",
+      "line": 75,
+      "en": "Hypothetical scenario ",
+      "ne": "काल्पनिक परिदृश्य ",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T163",
+      "source": "backend/app/reports/formatting.py",
+      "line": 63,
+      "en": "date only",
+      "ne": "मिति मात्र",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T164",
+      "source": "backend/app/reports/formatting.py",
+      "line": 17,
+      "en": "unknown",
+      "ne": "अज्ञात",
+      "review": "reviewed by Siku"
+    },
+    {
+      "id": "T165",
+      "source": "backend/app/reports/formatting.py",
+      "line": 41,
+      "en": "BS unavailable (outside calendar table)",
+      "ne": "वि.सं. उपलब्ध छैन (पात्रोको सीमाबाहिर)",
+      "review": "reviewed by Siku"
+    }
+  ]
+}

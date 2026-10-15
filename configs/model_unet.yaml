@@ -1,0 +1,27 @@
+model_version: unet-kuro-v2-w32-c4
+preprocessing_id: s1-db-four-channel-v2
+checkpoint: data/models/himaroad/unet/unet-kuro-v2-w32-c4/model.pt
+device: cpu
+tile_size: 128
+overlap: 16
+permanent_water_db: -20
+allow_synthetic: false
+in_channels: 4
+base_channels: 32
+depth: 4
+training_device: cuda:0
+seed: 42
+epochs: 30
+batch_size: 4
+workers: 0
+learning_rate: 0.0003
+positive_weight: 2.0
+amp: true
+split_config: configs/model_splits_v2.json
+protocol_commit: bda5748eb8bdbb6c5fedcab10c8f79cf926716d7
+precision_floor: 0.8
+false_negative_cost: 5
+protocol_path: docs/MODEL_V2_PROTOCOL.md
+checkpoint_sha256: 3ed60130587f4c9562653d4cd9b389e41e4df21030d90eb85ea2d33f7a7098e5
+evaluation_limitations:
+  - "Once-only independent Himalayan evaluation (2026-10-14; Teesta 2023, Melamchi 2021, Chamoli 2021): this UNet detected none of 1,298 human-labelled new-water pixels in three valley-enriched windows (recall 0, IoU 0). Its water candidates are not validated in Himalayan valleys; it is validated only on lowland development events (precision 0.80, IoU 0.77). See docs/EVALUATION.md."

@@ -1,0 +1,11 @@
+# Case study: Bhote Koshi-Trishuli debris flood, event date 26 Aug 2026 (Rasuwa, Nepal).
+# The AOI comes from news place names (Syabrubesi, Timure, Rasuwagadhi); no reference
+# map was used to choose it. OSM snapshot defaults to 2026-08-25T00:00Z (A-D07).
+event_date: '2026-08-26'
+bbox: [85.30, 28.12, 85.42, 28.30]
+provider: cdse
+detector: baseline
+osm_crosscheck: true
+# Flow-path bonus source (place name from public geography, not a reference map).
+flowpath_sources:
+  - {name: "Bhote Koshi at Rasuwagadhi", lon: 85.378, lat: 28.271}

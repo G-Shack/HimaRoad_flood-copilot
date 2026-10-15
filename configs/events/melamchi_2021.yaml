@@ -1,0 +1,11 @@
+# Second AOI: Melamchi debris flood, event date 15 Jun 2021 (Sindhupalchok, Nepal).
+# Chosen from general knowledge of Himalayan debris floods (a second, independent event
+# and date), not from any reference map. OSM snapshot defaults to 2021-06-14T00:00Z.
+event_date: '2021-06-15'
+bbox: [85.52, 27.80, 85.62, 27.95]
+provider: cdse
+detector: baseline
+osm_crosscheck: true
+# Flow-path bonus source (place name from public geography, not a reference map).
+flowpath_sources:
+  - {name: "Melamchi Khola near Timbu", lon: 85.565, lat: 27.935}

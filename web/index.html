@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HimaRoad Flood Copilot</title>
+<link rel="stylesheet" href="/static/vendor/leaflet.css">
+<link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+<header>
+  <div class="brand">
+    <div class="logo"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 19l6-9 4 5 3-4 9 8"/><path d="M3 23c3-2 5 2 8 0s5 2 8 0 4-1 5 0" stroke="#E3872D"/></svg></div>
+    <div><strong>HimaRoad<span>.</span> Flood Copilot</strong><small>SATELLITE EVIDENCE · HONEST LIMITS</small></div>
+  </div>
+  <div class="topright">
+    <span class="badge"><i></i>Saved run · real Sentinel data · works offline</span>
+    <span>Track B · Situation-report copilot</span>
+    <div class="sitelang" role="group" aria-label="Language"><button data-site="en" class="on">English</button><button data-site="ne">नेपाली</button></div>
+  </div>
+</header>
+<div class="shell">
+<aside>
+  <button class="nav active" data-tab="overview"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="7" height="7" rx="1.5"/><rect x="11" y="2" width="7" height="7" rx="1.5"/><rect x="2" y="11" width="7" height="7" rx="1.5"/><rect x="11" y="11" width="7" height="7" rx="1.5"/></svg>Overview</button>
+  <button class="nav" data-tab="evidence"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>Evidence</button>
+  <button class="nav" data-tab="report"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 2h7l4 4v12H5z"/><path d="M8 10h6M8 13h6"/></svg>Situation report</button>
+  <button class="nav" data-tab="about"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10" cy="10" r="8"/><path d="M10 9v5M10 6v.5"/></svg>About and limits</button>
+  <div class="sidecap">CURRENT RUN</div>
+  <div class="runcard">
+    <select id="runSelect" aria-label="Saved run"></select>
+    <div id="runMeta">Loading…</div>
+  </div>
+  <a class="sidelink" href="http://127.0.0.1:8501" target="_blank" rel="noopener">New analysis (live satellite data) ↗</a>
+  <div class="sidetail">Overlap with a hazard means <b>potentially exposed</b>. It is not confirmed damage.<br><br>HimaRoad × flood-copilot<br>Apache-2.0</div>
+</aside>
+<main>
+
+<section id="overview">
+  <div class="kicker" id="placeKicker">Flood and access evidence</div>
+  <div class="heading">
+    <div><h1>Who may be cut off, and how sure are we?</h1>
+    <p class="subtitle">Sentinel-1 radar change, Sentinel-2, the Copernicus DEM and OpenStreetMap from before the event, on one map. The copilot answers from the same saved evidence.</p></div>
+    <div class="toolbar"><button class="button" id="resetView">↺ Reset view</button><button class="button primary" data-goto="report">↓ Situation report (PDF)</button></div>
+  </div>
+  <div class="metrics">
+    <div class="metric saffron"><small>Potentially road-cut settlements</small><strong id="mCut">–</strong><span id="mCutNote">Hypothetical scenario</span></div>
+    <div class="metric"><small>Potentially exposed buildings</small><strong id="mBld">–</strong><span>Overlap with a hazard, not damage</span></div>
+    <div class="metric"><small>Suspected affected road links</small><strong id="mLinks">–</strong><span>Operational status unknown</span></div>
+    <div class="metric navy"><small>Valid change observation</small><strong id="mCov">–</strong><span>The rest is unobservable, never zero</span></div>
+  </div>
+  <div class="workspace">
+    <div class="card">
+      <div class="cardhead"><div><strong>Surface change and mapped access</strong><small id="mapSub">Saved run</small></div>
+        <select class="scenario" id="scenario" aria-label="Hypothetical access scenario">
+          <option value="1">S1 · Confirmed closures only</option>
+          <option value="2" selected>S2 · Observed change (primary)</option>
+          <option value="3">S3 · Radar-optical corroborated</option>
+          <option value="4">S4 · Worst case</option>
+        </select></div>
+      <div class="mapwrap"><div id="map"></div>
+        <div class="mapbox" id="mapbox"><b id="mapTitle">Evidence map</b><span id="mapDetail">Click a settlement for its access. Click anywhere else to pick a flow-path start.</span></div>
+        </div>
+      <div class="comparebar"><strong>Radar before / after</strong><span class="lbl" id="preLbl">Before (VV dB)</span><input type="range" id="compare" min="0" max="100" value="100" aria-label="Show the after-event radar image from the left"><span class="lbl" id="postLbl">After · not for navigation</span></div>
+      <div class="legend" id="legend">
+        <label><input type="checkbox" data-layer="disturbance" checked><span class="sw" style="background:#E3872D"></span>Disturbance</label>
+        <label><input type="checkbox" data-layer="possible_debris" checked><span class="sw" style="background:#B5452B"></span>Possible debris</label>
+        <label><input type="checkbox" data-layer="flood_extent" checked><span class="sw" style="background:#2E9BD6"></span>Water-like change</label>
+        <label><input type="checkbox" data-layer="unobservable"><span class="sw" style="background:repeating-linear-gradient(45deg,#8A9AA2 0 2px,#fff 2px 4px)"></span>Unobservable</label>
+        <label><input type="checkbox" data-layer="roads" checked><span class="sw" style="background:#E3872D;height:3px"></span>Roads by evidence</label>
+        <label><input type="checkbox" data-layer="buildings" checked><span class="sw" style="background:#B5452B"></span>Exposed buildings</label>
+        <label><input type="checkbox" data-layer="flowpaths" checked><span class="sw" style="background:#7B3FA0;height:3px"></span>Flow paths</label>
+        <label><input type="checkbox" data-layer="settlements" checked><span class="sw" style="background:#1F7A8C;border-radius:50%;width:10px"></span>Settlements</label>
+      </div>
+      <div class="scenarioNote" id="scenarioNote"></div>
+      <div class="settlements">
+        <div class="tablehead"><strong>Settlement access</strong><span id="tableNote">Click a row to find it on the map</span></div>
+        <div class="tablebox"><table><thead><tr><th>Settlement</th><th>Vehicle access</th><th>Trail</th><th>Evidence</th><th>Exposed bldgs</th></tr></thead><tbody id="rows"></tbody></table></div>
+      </div>
+    </div>
+    <div class="side">
+      <div class="card" id="copilotCard">
+        <div class="cardhead copilothead"><div><strong>✦ Flood Copilot</strong><small>Ask about the map. Every answer cites the evidence.</small></div>
+          <div class="lang"><button data-lang="en" class="on">EN</button><button data-lang="ne">नेपाली</button></div></div>
+        <div class="cstatus busy" id="cstatus">Loading the run and checking every file hash…</div>
+        <div class="chat" id="chat" aria-live="polite">
+          <div class="msg intro"><p><b>Your map, explained.</b></p><p>I read the same saved run as the map. Choose a question below. I answer in English or Nepali, and I cite the evidence for every number.</p></div>
+        </div>
+        <div class="suggestions"><small>ASK A QUESTION</small><div class="chips" id="chips"></div></div>
+        <form class="composer" id="composer"><input id="question" aria-label="Type a question" placeholder="Type a question, for example: which roads are affected?" autocomplete="off"><button class="send" aria-label="Send">↑</button></form>
+        <div class="chatfoot">Every number comes from the saved maps</div>
+      </div>
+      <div class="card flow" id="flowCard">
+        <strong>Flow path from an upstream point</strong>
+        <p>Click the map to pick a start point, then trace the path down the valley on the Copernicus DEM. This is a terrain trace, not an inundation forecast.</p>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><button class="button primary" id="traceBtn" disabled>Trace flow path</button><span id="flowPick" style="color:var(--muted)">No point picked</span></div>
+        <div id="flowOut"></div>
+      </div>
+      <div class="card note"><div><strong>Evidence before assumptions.</strong><p>Satellite change shows potential exposure. It does not show road closure, physical damage or a safe route. Satellite time is not event time.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="card panel hidden" id="evidence">
+  <div class="kicker">Evidence and provenance</div>
+  <h2>A traceable picture of uncertainty.</h2>
+  <p class="subtitle">Every number on the map comes from this saved run. The run records its scenes, masks, thresholds and software commit.</p>
+  <div id="evidenceBody"></div>
+</section>
+
+<section class="card panel hidden" id="report">
+  <div class="kicker">One-page situation report</div>
+  <h2>Situation report, generated from the saved evidence.</h2>
+  <p class="subtitle">The copilot fills a fixed template with cited facts only. Nepali templates were reviewed by a native speaker. The PDF takes about five seconds.</p>
+  <div class="reportbar">
+    <button class="button primary" data-report="en">Prepare English PDF</button>
+    <button class="button primary" data-report="ne">नेपाली PDF तयार गर्नुहोस्</button>
+    <a class="button hidden" id="pdfDownload" download>↓ Download PDF</a>
+    <span id="reportStatus" style="color:var(--muted);font-size:12px"></span>
+  </div>
+  <div class="empty" id="pdfEmpty">Select a language to prepare the report.</div>
+  <iframe id="pdfframe" class="hidden" title="Situation report preview"></iframe>
+</section>
+
+<section class="card panel hidden" id="about">
+  <div class="kicker">About the system</div>
+  <h2>What it measured, and how to read it.</h2>
+  <p class="subtitle">You give an area and a flood date. The system compares Sentinel-1 radar images from before and after the event, and adds Sentinel-2 when the sky is clear. It overlays OpenStreetMap from before the event and finds settlements that can lose the road connection to the nearest town or hospital in four hypothetical scenarios.</p>
+  <div class="grid2" style="margin-top:18px">
+    <div>
+      <h3 style="margin-bottom:10px">Measured results</h3>
+      <div class="box good"><b>Case study, Trishuli, 26 Aug 2026.</b> 22 of 73 settlements potentially road-cut in the primary scenario. 102 potentially exposed mapped buildings. 121 suspected affected road links.</div><br>
+      <div class="box good"><b>Flood segmentation model (UNet), development events.</b> Precision 0.8008, recall 0.9457, IoU 0.7656 (rule baseline IoU 0.6096).</div><br>
+      <div class="box good"><b>Copilot.</b> 62,263 evidence claims from the Trishuli run. Every answer cites its claims. A one-page report in English or Nepali takes about five seconds.</div>
+    </div>
+    <div>
+      <h3 style="margin-bottom:10px">How to read the evidence</h3>
+      <div class="box good">Overlap with a hazard means <b>potentially exposed</b>. Operational road status stays unknown until a field team reports it.</div><br>
+      <div class="box good">Areas that radar cannot see (layover and shadow in steep valleys) stay <b>unknown</b>, never zero.</div><br>
+      <div class="box good">Sentinel satellites revisit an area every few days. Satellite time is not event time.</div><br>
+      <div class="box good">The four access scenarios are <b>hypothetical</b>. They show which settlements depend on which links.</div>
+    </div>
+  </div>
+  <h3 style="margin:24px 0 8px">Attributions and citations</h3>
+  <ul class="limits">
+    <li>Contains modified Copernicus Sentinel data 2026.</li>
+    <li>Produced using Copernicus WorldDEM-30 © DLR e.V. 2010–2014 and © Airbus Defence and Space GmbH 2014–2018 provided under COPERNICUS by the European Union and ESA; all rights reserved.</li>
+    <li>The organisations in charge of the Copernicus programme by law or by delegation do not incur any liability for any use of the Copernicus WorldDEM-30.</li>
+    <li>© OpenStreetMap contributors.</li>
+    <li>Kuro Siwo: Bountos et al., NeurIPS Datasets and Benchmarks 2024 (training data).</li>
+    <li>Sen1Floods11: Bonafilia et al., CVPR Workshops 2020 (surveyed, not used).</li>
+    <li>European Union, Copernicus Emergency Management Service data (EMSR927, validation only).</li>
+    <li>Map library: Leaflet 1.9.4 (BSD-2-Clause). Nepali font: Noto Sans Devanagari (SIL Open Font License).</li>
+  </ul>
+  <p class="subtitle" style="margin-top:12px">Full method and results: REPORT.pdf in the repository. Code: Apache License 2.0.</p>
+</section>
+
+<div class="footer"><span>HimaRoad Flood Copilot · Track B · Mapping Flood Damage from Space</span><span>Contains modified Copernicus Sentinel data 2026 · © OpenStreetMap contributors</span></div>
+</main>
+</div>
+<div id="toast" class="toast hidden" role="status"></div>
+<script src="/static/vendor/leaflet.js"></script>
+<script src="/static/app.js"></script>
+<script src="/static/i18n.js"></script>
+</body>
+</html>
