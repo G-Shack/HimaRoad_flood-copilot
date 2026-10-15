@@ -30,7 +30,7 @@ The system has two parts:
 | One-page situation report from the system | "Situation report" page of the web app (English and Nepali PDF). Examples from the Trishuli case study: `results/situation-report/` |
 | How to run the system | This README |
 | Report (max. 6 pages) with limitations | [REPORT.md](REPORT.md), designed print version [REPORT.pdf](REPORT.pdf) (6 A4 pages) |
-| 3-minute video | Link: *to be added* |
+| 3-minute video | [youtu.be/a_gX1z1GDAI](https://youtu.be/a_gX1z1GDAI) |
 | Presentation deck | [deck/HimaRoad_Flood_Copilot.pdf](deck/HimaRoad_Flood_Copilot.pdf) (15 slides). The PowerPoint file is in the [v1.0 release](https://github.com/G-Shack/HimaRoad_flood-copilot/releases/tag/v1.0) |
 | Data attributions and training-dataset citations | [Attributions](#attributions-and-citations) below, and REPORT.md section 8 |
 | Case-study results compared with EMSR927 | REPORT.md section 5, and the result files in `results/emsr927/` |

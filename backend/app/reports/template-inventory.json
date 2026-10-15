@@ -1225,7 +1225,7 @@
       "line": 32,
       "en": "Satellite times are not event times. Unknown observations never imply zero impact.",
       "ne": "उपग्रहको समय घटनाको समय होइन। अज्ञात अवलोकनको अर्थ प्रभाव शून्य होइन।",
-      "review": "changed after review: pending native review"
+      "review": "reviewed by Siku"
     },
     {
       "id": "T154",

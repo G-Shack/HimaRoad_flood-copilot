@@ -803,7 +803,7 @@
     {
       "id": "T153",
       "decision": "approved",
-      "pair_sha256": "866ba198ea57a7b945a344b582fcc5a7edda815b97ab649e2346e20fc5167874"
+      "pair_sha256": "52e5f60a9c9231fc6e7afc177a82861ce4805b106595bfee7d92f0ce03ae9c02"
     },
     {
       "id": "T154",
@@ -865,5 +865,13 @@
       "decision": "approved",
       "pair_sha256": "b98606c7062f8766aab4cccbacb03f245e211994f7e0914f319d6ea92649f1c0"
     }
-  ]
+  ],
+  "re_review": {
+    "date": "2026-10-15",
+    "confirmed_by": "Om",
+    "templates": [
+      "T153"
+    ],
+    "change": "T153: first sentence removed in English and Nepali; Siku approved the new pair. T122 removed from the inventory."
+  }
 }
